@@ -124,8 +124,6 @@ class FictionBook:
 
         if self._headings:
             toc_section = ET.Element('section')
-            toc_title = ET.SubElement(toc_section, 'title')
-            ET.SubElement(toc_title, 'p').text = 'Содержание'
             for section_id, title_text in self._headings:
                 p = ET.SubElement(toc_section, 'p')
                 a = ET.SubElement(p, 'a', attrib={'l:href': f'#{section_id}'})
