@@ -16,15 +16,15 @@ def _create_fb2_template(title: str):
     title_info = ET.SubElement(description, 'title-info')
     ET.SubElement(title_info, 'genre').text = 'unknown'
     author = ET.SubElement(title_info, 'author')
-    ET.SubElement(author, 'first-name').text = "Unknown"
-    ET.SubElement(author, 'last-name').text = "Author"
+    ET.SubElement(author, 'first-name').text = 'Unknown'
+    ET.SubElement(author, 'last-name').text = 'Author'
     ET.SubElement(title_info, 'book-title').text = title
     ET.SubElement(title_info, 'lang').text = 'mul'
 
     doc_info = ET.SubElement(description, 'document-info')
     doc_author = ET.SubElement(doc_info, 'author')
     ET.SubElement(doc_author, 'nickname').text = 'KvaytG'
-    ET.SubElement(doc_info, 'program-used').text = 'https://github.com/KvaytG/to-fb2'
+    ET.SubElement(doc_info, 'program-used').text = 'https://github.com/KvaytG/fb2-converter'
 
     current_date = datetime.now()
     doc_date = ET.SubElement(doc_info, 'date', value=current_date.strftime('%Y-%m-%d'))
@@ -45,6 +45,7 @@ class FictionBook:
         self._root, self._body = _create_fb2_template(title)
         self._current_section = None
         self._last_title_element = None
+        self._headings = []
 
     def add_title(self, title: str, check: bool = True):
         title = clean_text(title)
@@ -54,6 +55,10 @@ class FictionBook:
             ET.SubElement(self._last_title_element, 'p').text = title
         else:
             section = ET.SubElement(self._body, 'section')
+            number = len(self._headings) + 1
+            section_id = f'section_{number}'
+            section.set('id', section_id)
+            self._headings.append((section_id, f'{number}. {title}'))
             title_element = ET.SubElement(section, 'title')
             ET.SubElement(title_element, 'p').text = title
             self._current_section = section
@@ -77,14 +82,25 @@ class FictionBook:
 
     def add_unknown(self, text: str):
         text = clean_text(text)
-        if not text:
-            return
-        if is_title(text):
-            self.add_title(text.upper(), False)
-        else:
-            self.add_text(text, False)
+        if text:
+            self.add_title(text, False) if is_title(text) else self.add_text(text, False)
 
     def save(self, path: str):
+        if self._headings:
+            toc_section = ET.Element('section')
+            toc_title = ET.SubElement(toc_section, 'title')
+            ET.SubElement(toc_title, 'p').text = 'Содержание'
+            for section_id, title_text in self._headings:
+                p = ET.SubElement(toc_section, 'p')
+                a = ET.SubElement(p, 'a', attrib={'l:href': f'#{section_id}'})
+                a.text = title_text
+            body_children = list(self._body)
+            for child in body_children:
+                self._body.remove(child)
+            self._body.append(body_children[0])
+            self._body.append(toc_section)
+            for child in body_children[1:]:
+                self._body.append(child)
         tree = ET.ElementTree(self._root)
         if hasattr(ET, 'indent'):
             ET.indent(tree, space='\t', level=0)
