@@ -1,16 +1,27 @@
-[build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
-
 [project]
 name = "fb2converter"
 version = "1.0.0"
 description = "Simple converter from TXT and PDF to FictionBook 2.0 (FB2) format"
 readme = "README.md"
 requires-python = ">=3.10"
+dependencies = [
+  "captionforge @ git+https://github.com/KvaytG/caption-forge.git@7e9a41049061e6e21734a8afd78684cd5a96ac12",
+  "cffi==1.17.1",
+  "chardet==5.2.0",
+  "charset-normalizer==3.4.2",
+  "cryptography==45.0.4",
+  "numpy==2.2.6",
+  "pdfminer.six==20250506",
+  "pillow==11.2.1",
+  "pycparser==2.22",
+]
 
 [project.optional-dependencies]
 dev = ["pytest"]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

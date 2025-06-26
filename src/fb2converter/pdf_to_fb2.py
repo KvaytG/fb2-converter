@@ -20,10 +20,10 @@ def _extract_paragraphs(pdf_path):
     return texts
 
 
-def convert_pdf_to_fb2(src_path: str, out_path: str, remove_digits: bool = True):
+def convert_pdf_to_fb2(src_path: str, out_path: str, font_path: str):
     fb2 = FictionBook(get_title_by_file_path(out_path))
     for paragraph in _extract_paragraphs(src_path):
-        if remove_digits and _digits_pattern.match(paragraph):
+        if _digits_pattern.match(paragraph):
             continue
         fb2.add_unknown(paragraph)
-    fb2.save(out_path)
+    fb2.save(out_path, font_path)
