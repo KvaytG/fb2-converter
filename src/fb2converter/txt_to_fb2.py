@@ -10,5 +10,5 @@ def convert_txt_to_fb2(src_path: str, out_path: str, font_path: str):
         for line in f:
             line = clean_text(line)
             if line:
-                fb2.add_unknown(line)
+                fb2.add_unknown_text(line)
     fb2.save(out_path, font_path)

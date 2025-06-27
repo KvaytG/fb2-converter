@@ -57,6 +57,14 @@ class FictionBook:
             return section_id
         return None
 
+    def _section_has_text(self) -> bool:
+        if self._current_section is None:
+            return False
+        for elem in self._current_section:
+            if elem.tag == 'p':
+                return True
+        return False
+
     def add_title(self, title: str, check: bool = True):
         title = clean_text(title)
         if check and not title:
@@ -77,15 +85,7 @@ class FictionBook:
         self._last_title_element = None
         ET.SubElement(self._current_section, 'p').text = text
 
-    def _section_has_text(self) -> bool:
-        if self._current_section is None:
-            return False
-        for elem in self._current_section:
-            if elem.tag == 'p':
-                return True
-        return False
-
-    def add_unknown(self, text: str):
+    def add_unknown_text(self, text: str):
         text = clean_text(text)
         if not text:
             return
@@ -93,6 +93,25 @@ class FictionBook:
             self.add_title(text, False)
         else:
             self.add_text(text, False)
+
+    def add_image(self, image: Image.Image, imageId: str = None, contentType: str = 'image/jpeg') -> str:
+        if imageId is None:
+            imageId = f'image_{uuid.uuid4().hex[:8]}.jpg'
+
+        buffer = io.BytesIO()
+        image.save(buffer, format=contentType.split('/')[-1].upper())
+        img_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
+
+        binary_elem = ET.Element('binary', id=imageId, content_type=contentType)
+        binary_elem.text = img_base64
+
+        body_index = list(self._root).index(self._body)
+        self._root.insert(body_index, binary_elem)
+
+        image_elem = ET.Element('image', attrib={'l:href': f'#{imageId}'})
+        self._current_section.append(image_elem)
+
+        return imageId
 
     def save(self, path: str, font_path: str):
         img = generate_caption_image(
