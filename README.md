@@ -21,4 +21,4 @@ pip install git+https://github.com/KvaytG/fb2-converter.git
 ## 📜 License
 fb2-converter is licensed under the **[MIT license](https://opensource.org/license/mit)**.
 
-This project uses open-source components. For license details see [pyproject.toml](pyproject.toml) and dependencies' official websites.
+This project uses open-source components. For license details see **[pyproject.toml](pyproject.toml)** and dependencies' official websites.
