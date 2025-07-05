@@ -1,6 +1,6 @@
 # fb2-converter
 
-Simple converter from TXT and PDF to FictionBook 2.0 (FB2) format
+Simple converter from TXT and PDF to FB2 format
 
 ## 📚 Usage
 ```python

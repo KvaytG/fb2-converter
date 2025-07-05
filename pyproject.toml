@@ -1,7 +1,7 @@
 [project]
 name = "fb2converter"
 version = "1.0.0"
-description = "Simple converter from TXT and PDF to FictionBook 2.0 (FB2) format"
+description = "Simple converter from TXT and PDF to FB2 format"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
