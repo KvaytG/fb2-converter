@@ -1,5 +1,7 @@
 # fb2-converter
 
+![Python 3.10](https://img.shields.io/badge/Python-3.10-blue?logo=python) ![MIT License](https://img.shields.io/badge/License-MIT-green)
+
 Simple converter from TXT and PDF to FB2 format
 
 ## 📚 Usage
