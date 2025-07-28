@@ -5,8 +5,9 @@
 Simple converter from TXT and PDF to FB2 format
 
 ## 📚 Usage
+
 ```python
-from fb2converter import convert_txt_to_fb2, convert_pdf_to_fb2
+from fb2_converter import convert_txt_to_fb2, convert_pdf_to_fb2
 
 # Convert TXT to FB2
 convert_txt_to_fb2('input.txt', 'output.fb2', 'example-font.ttf')
