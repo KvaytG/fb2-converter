@@ -14,6 +14,9 @@ convert_txt_to_fb2('input.txt', 'output.fb2', 'example-font.ttf')
 
 # Convert PDF to FB2
 convert_pdf_to_fb2('input.pdf', 'output.fb2', 'example-font.ttf')
+
+# Convert EPUB to FB2
+convert_pdf_to_fb2('input.epub', 'output.fb2', 'example-font.ttf')
 ```
 
 ## ⚙️ Installation
