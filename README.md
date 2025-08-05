@@ -7,7 +7,8 @@ Simple converter from TXT, PDF and EPUB to FB2 format
 ## 📚 Usage
 
 ```python
-from fb2_converter import convert_txt_to_fb2, convert_pdf_to_fb2
+from fb2_converter import convert_txt_to_fb2,\
+    convert_pdf_to_fb2, convert_epub_to_fb2
 
 # Convert TXT to FB2
 convert_txt_to_fb2('input.txt', 'output.fb2', 'example-font.ttf')
@@ -16,7 +17,7 @@ convert_txt_to_fb2('input.txt', 'output.fb2', 'example-font.ttf')
 convert_pdf_to_fb2('input.pdf', 'output.fb2', 'example-font.ttf')
 
 # Convert EPUB to FB2
-convert_pdf_to_fb2('input.epub', 'output.fb2', 'example-font.ttf')
+convert_epub_to_fb2('input.epub', 'output.fb2', 'example-font.ttf')
 ```
 
 ## ⚙️ Installation
