@@ -21,12 +21,12 @@ convert_pdf_to_fb2('input.pdf', 'output.fb2', 'example-font.ttf')
 convert_epub_to_fb2('input.epub', 'output.fb2', 'example-font.ttf')
 ```
 
-## ⚙️ Installation
+## 📥 Installation
 ```bash
 pip install git+https://github.com/KvaytG/fb2-converter.git
 ```
 
-## 📜 License
+## 📝 License
 Licensed under the **[MIT](LICENSE.txt)** license.
 
 This project uses open-source components. For license details see **[pyproject.toml](pyproject.toml)** and dependencies' official websites.
