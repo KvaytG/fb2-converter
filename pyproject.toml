@@ -1,0 +1,27 @@
+[project]
+name = "fb2-converter"
+version = "1.0.0"
+description = "Simple converter from TXT, PDF and EPUB to FB2 format"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "captionforge @ git+https://github.com/KvaytG/caption-forge.git@7e9a41049061e6e21734a8afd78684cd5a96ac12",
+    "cffi>=1.17.1,<2.0.0",
+    "chardet>=5.2.0,<6.0.0",
+    "charset-normalizer>=3.4.2,<4.0.0",
+    "cryptography>=45.0.4,<46.0.0",
+    "numpy>=2.2.6,<3.0.0",
+    "pdfminer.six>=20250506,<2026.0.0",
+    "pillow>=11.2.1,<12.0.0",
+    "pycparser>=2.22,<3.0.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}

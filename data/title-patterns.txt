@@ -1,0 +1,10 @@
+# You're inside title-patterns.txt
+
+# English pattern
+^(?:Volume|Part|Chapter|Prologue|Epilogue)\b
+
+# Spanish pattern
+^(?:Tomo|Parte|Capítulo|Prólogo|Epílogo)\b
+
+# Russian pattern
+^(?:Том|Часть|Глава|Пролог|Эпилог)\b
